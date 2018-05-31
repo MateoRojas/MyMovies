@@ -14,7 +14,11 @@ class MoviePresenter(val view: View) : MoviePresenterOutput {
     }
 
     override fun showMovieInformation(movie: Movie?) {
-        view.showMovieInformation(movie)
+        if (movie == null) {
+            view.showMovieNotFoundMessage()
+        } else {
+            view.showMovieInformation(movie)
+        }
     }
 
     fun viewLoaded() {
@@ -24,5 +28,6 @@ class MoviePresenter(val view: View) : MoviePresenterOutput {
 
 interface View {
     fun setActionsToScreenElements()
-    fun showMovieInformation(movie: Movie?)
+    fun showMovieInformation(movie: Movie)
+    fun showMovieNotFoundMessage()
 }

@@ -1,15 +1,18 @@
 package uio.androidbootcamp.moviesapp.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_find_movie.*
 import uio.androidbootcamp.moviesapp.R
 import uio.androidbootcamp.moviesapp.model.models.Movie
 import uio.androidbootcamp.moviesapp.presenter.MoviePresenter
 import uio.androidbootcamp.moviesapp.presenter.View
+import uio.androidbootcamp.moviesapp.utils.Constants.MOVIE
 import uio.androidbootcamp.moviesapp.utils.toast
 import kotlin.reflect.KClass
 
 class FindMovieActivity : BaseActivity(), View {
+
     private val presenter = MoviePresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +28,14 @@ class FindMovieActivity : BaseActivity(), View {
         }
     }
 
-    override fun showMovieInformation(movie: Movie?) {
-        toast(movie?.toString() ?: getString(R.string.movie_not_found))
+    override fun showMovieInformation(movie: Movie) {
+        val intent = Intent(this, MovieDetailActivity::class.java)
+        intent.putExtra(MOVIE, movie)
+        startActivity(intent)
+    }
+
+    override fun showMovieNotFoundMessage() {
+        toast(getString(R.string.movie_not_found))
     }
 
     override fun isDrawerEnabled(): Boolean {
