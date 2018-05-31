@@ -7,6 +7,7 @@ import uio.androidbootcamp.moviesapp.presenter.MovieDetailPresenter
 import uio.androidbootcamp.moviesapp.presenter.MovieDetailView
 import java.util.*
 
+
 class MovieDetailActivity : BaseActivity(), MovieDetailView {
 
     private val presenter: MovieDetailPresenter = MovieDetailPresenter(this)
@@ -26,7 +27,7 @@ class MovieDetailActivity : BaseActivity(), MovieDetailView {
     }
 
     override fun loadImage(path: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        image_view_movie_poster.setImageURI(path)
     }
 
     override fun showMovieTitle(title: String) {
