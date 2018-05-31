@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activities.FindMovieActivity"/>
+        <activity android:name=".view.activities.MovieDetailActivity" />
     </application>
 
 </manifest>
