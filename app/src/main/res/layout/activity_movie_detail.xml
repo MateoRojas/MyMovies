@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.0"
         android:contentDescription="@string/movie_image"
         app:placeholderImage="@drawable/poster_placeholder_image"
-        app:actualImageScaleType="fitCenter"/>
+        app:actualImageScaleType="fitXY"/>
 
     <TextView
         android:id="@+id/text_view_movie_title"

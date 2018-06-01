@@ -1,13 +1,14 @@
 package uio.androidbootcamp.moviesapp.model.models
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.Date
 
 data class Movie(val id: Long = 0,
-                 val name: String,
-                 val posterPath: String,
+                 val title: String,
+                 @SerializedName("poster_path") val posterPath: String,
                  val overview: String,
-                 val releaseDate: Date = Date()) : Serializable {
+                 @SerializedName("release_date") val releaseDate: Date = Date()) : Serializable {
 
     constructor() : this(0, "", "", "", Date())
 
