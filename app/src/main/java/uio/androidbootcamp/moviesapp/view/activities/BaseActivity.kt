@@ -2,15 +2,17 @@ package uio.androidbootcamp.moviesapp.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.View
-import kotlinx.android.synthetic.main.drawer_layout.*
 import uio.androidbootcamp.moviesapp.R
-import uio.androidbootcamp.moviesapp.R.id.*
+import uio.androidbootcamp.moviesapp.R.id.action_find
+import uio.androidbootcamp.moviesapp.R.id.action_list
 import uio.androidbootcamp.moviesapp.utils.ActivitiesNames
-import kotlin.reflect.KClass
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -30,29 +32,30 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     private fun enableNavigationDrawer() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val navigationView = findViewById<NavigationView>(R.id.navigation_view)
         setSupportActionBar(toolbar)
         val drawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle(
                 this,
-                drawer_layout,
+                drawerLayout,
                 toolbar,
                 R.string.drawer_close,
                 R.string.drawer_open) {
             override fun onDrawerClosed(drawerView: View) {
                 super.onDrawerClosed(drawerView)
-                // toast("Con este evento manejas lo que sucede cuando el drawer se cierra")
             }
 
             override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
-                // toast("Con este evento, manejas lo que sucede cuando el drawer se abre")
             }
         }
 
         drawerToggle.isDrawerIndicatorEnabled = true
-        drawer_layout.addDrawerListener(drawerToggle)
+        drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
-        this.navigation_view.setNavigationItemSelectedListener {
+        navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
 
                 action_list -> {
@@ -68,7 +71,7 @@ abstract class BaseActivity : AppCompatActivity() {
                     }
                 }
             }
-            drawer_layout.closeDrawer(GravityCompat.START)
+            drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
     }

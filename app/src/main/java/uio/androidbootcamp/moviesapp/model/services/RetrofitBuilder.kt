@@ -7,12 +7,11 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
 
-
 object RetrofitBuilder {
 
     private var retrofit: Retrofit? = null
 
-    private const val BASE_URL = "http://api.themoviedb.org/3/search/"
+    private const val BASE_URL = "http://api.themoviedb.org/3/"
 
     fun getRetrofitInstance(): Retrofit {
         //Este bloque es para tener logs de las llamadas web
