@@ -1,5 +1,6 @@
 package uio.androidbootcamp.moviesapp.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
@@ -7,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_find_movie.*
 import uio.androidbootcamp.moviesapp.R
 import uio.androidbootcamp.moviesapp.model.models.Movie
 import uio.androidbootcamp.moviesapp.presenter.MoviePresenter
+import uio.androidbootcamp.moviesapp.utils.Constants.MOVIE
 
 
 class FindMovieActivity : AppCompatActivity(), MoviePresenter.View {
@@ -19,8 +21,14 @@ class FindMovieActivity : AppCompatActivity(), MoviePresenter.View {
         presenter.viewLoaded()
     }
 
-    override fun showMovieInformation(movie: Movie?) {
-        Toast.makeText(this,movie?.toString() ?: getString(R.string.movie_not_found), Toast.LENGTH_LONG).show()
+    override fun showMovieInformation(movie: Movie) {
+        val intent = Intent(this, MovieDetailActivity::class.java)
+        intent.putExtra(MOVIE, movie)
+        startActivity(intent)
+    }
+
+    override fun showMovieNotFoundMessage() {
+        Toast.makeText(this, getString(R.string.movie_not_found), Toast.LENGTH_LONG).show()
     }
 
      override  fun setActionsToScreenElements(){
