@@ -6,7 +6,9 @@ import uio.androidbootcamp.moviesapp.model.services.MovieService
 //Aquí se maneja la lógica de la aplicación
 class MoviePresenter(val view: View) : MovieService.MoviePresenterOutput {
 
-    private val movieService = MovieService(this)
+
+    private lateinit var movieService: MovieService
+
 
     fun findMovieByName(name: String) {
         movieService.findMovieByName(name)
@@ -20,7 +22,8 @@ class MoviePresenter(val view: View) : MovieService.MoviePresenterOutput {
         }
     }
 
-    fun viewLoaded(){
+    fun viewLoaded() {
+        movieService = view.getMovieService()
         view.setActionsToScreenElements()
     }
 
@@ -28,8 +31,6 @@ class MoviePresenter(val view: View) : MovieService.MoviePresenterOutput {
         fun setActionsToScreenElements()
         fun showMovieInformation(movie: Movie)
         fun showMovieNotFoundMessage()
+        fun getMovieService(): MovieService
     }
-
-
-
 }
