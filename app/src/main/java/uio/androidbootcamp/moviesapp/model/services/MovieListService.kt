@@ -7,35 +7,34 @@ import uio.androidbootcamp.moviesapp.model.models.Movie
 import uio.androidbootcamp.moviesapp.model.models.MovieWrapper
 
 
-//Manejo de Servicios Web
-class MovieService(private val presenterOutput: MoviePresenterOutput, private val movieRestService: MovieRestServices) {
+class MovieListService(private val presenterOutput: MovieListPresenterOutput, private val movieRestService: MovieRestServices) {
 
-    fun findMovieByName(name: String) {
-        val options = mapOf("api_key" to "api_key_to_replace", "query" to name)
-        val call = movieRestService.findMovieByName(options)
+    fun findMostPopularMovies() {
+        val options = mapOf("api_key" to "api_key_to_replace")
+        val call = movieRestService.findPopularMovies(options)
         println(call.request())
-        call.enqueue(manageFindMovieResponse())
+        call.enqueue(manageFindPopularMoviesResponse())
     }
 
-    private fun manageFindMovieResponse(): Callback<MovieWrapper> {
+    private fun manageFindPopularMoviesResponse(): Callback<MovieWrapper> {
         return object : Callback<MovieWrapper> {
             override fun onResponse(call: Call<MovieWrapper>, response: Response<MovieWrapper>) {
                 response.body()?.let {
                     if (it.results.isNullOrEmpty()) {
-                        presenterOutput.showMovieInformation(null)
+                        presenterOutput.showMovies(null)
                     }
-                    presenterOutput.showMovieInformation(it.results[0])
+                    presenterOutput.showMovies(it.results)
                 }
             }
 
             override fun onFailure(call: Call<MovieWrapper>, error: Throwable) {
                 error.printStackTrace()
-                presenterOutput.showMovieInformation(null)
+                presenterOutput.showMovies(null)
             }
         }
     }
 
-    interface MoviePresenterOutput {
-        fun showMovieInformation(movie: Movie?)
+    interface MovieListPresenterOutput {
+        fun showMovies(movies: List<Movie>?)
     }
 }

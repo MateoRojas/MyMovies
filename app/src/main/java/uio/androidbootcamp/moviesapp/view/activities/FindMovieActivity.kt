@@ -7,6 +7,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_find_movie.*
 import uio.androidbootcamp.moviesapp.R
 import uio.androidbootcamp.moviesapp.model.models.Movie
+import uio.androidbootcamp.moviesapp.model.services.MovieRestServices
 import uio.androidbootcamp.moviesapp.model.services.MovieService
 import uio.androidbootcamp.moviesapp.model.services.RetrofitInstance
 import uio.androidbootcamp.moviesapp.presenter.MoviePresenter
@@ -30,7 +31,7 @@ class FindMovieActivity : AppCompatActivity(), MoviePresenter.View {
     }
 
     override fun getMovieService(): MovieService {
-        val movieRestService : MovieService.MovieRestServices = RetrofitInstance.retrofit.create(MovieService.MovieRestServices::class.java)
+        val movieRestService : MovieRestServices = RetrofitInstance.retrofit.create(MovieRestServices::class.java)
         return MovieService(presenter, movieRestService)
     }
 

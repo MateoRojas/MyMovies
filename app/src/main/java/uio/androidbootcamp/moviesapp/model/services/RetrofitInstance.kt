@@ -4,7 +4,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Retrofit
 
 object RetrofitInstance {
-    private const val BASE_URL = "http://api.themoviedb.org/3/search/"
+    private const val BASE_URL = "http://api.themoviedb.org/3/"
 
     val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)

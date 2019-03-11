@@ -9,7 +9,6 @@ class MoviePresenter(val view: View) : MovieService.MoviePresenterOutput {
 
     private lateinit var movieService: MovieService
 
-
     fun findMovieByName(name: String) {
         movieService.findMovieByName(name)
     }

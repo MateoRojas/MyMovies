@@ -5,4 +5,5 @@
     <string name="list_movies">Lista de Peliculas</string>
     <string name="find_movie">Buscar Pelicula</string>
     <string name="movie_image">Movie Image</string>
+    <string name="movies_cannot_be_retrieved">No se pudieron obtener peliculas, por favor intente nuevamente</string>
 </resources>
