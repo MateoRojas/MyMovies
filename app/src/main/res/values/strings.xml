@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MoviesApp</string>
+    <string name="movie_not_found">No existe informacion de esta pelicula</string>
+
+    <string name="enter_movie_name">Ingrese el nombre de la pelicula</string>
+    <string name="list_movies">Lista de Peliculas</string>
+    <string name="find_movie">Buscar Pelicula</string>
 </resources>
