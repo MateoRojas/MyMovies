@@ -1,5 +1,6 @@
 package uio.androidbootcamp.moviesapp.model.models
 
+import java.io.Serializable
 import java.util.*
 
 data class Movie (
@@ -8,4 +9,4 @@ data class Movie (
     val posterPath: String = "",
     val overview: String = "",
     val releaseDate: Date = Date()
-)
+) : Serializable

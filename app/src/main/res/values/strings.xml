@@ -5,4 +5,5 @@
     <string name="enter_movie_name">Ingrese el nombre de la pelicula</string>
     <string name="list_movies">Lista de Peliculas</string>
     <string name="find_movie">Buscar Pelicula</string>
+    <string name="movie_image">Movie Image</string>
 </resources>

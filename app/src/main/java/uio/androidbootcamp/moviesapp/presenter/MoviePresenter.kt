@@ -17,11 +17,12 @@ class MoviePresenter(val view: View): MoviePresenterOutput {
     }
 
     override fun showMovieInformation(movie: Movie?) {
-        view.showMovieInformation(movie)
+        movie?.let { view.showMovieInformation(movie) } ?: view.showMovieNotFound()
     }
-}
 
-interface View {
-    fun showMovieInformation(movie: Movie?)
-    fun setActionsToScreenElements()
+    interface View {
+        fun showMovieInformation(movie: Movie)
+        fun showMovieNotFound()
+        fun setActionsToScreenElements()
+    }
 }
