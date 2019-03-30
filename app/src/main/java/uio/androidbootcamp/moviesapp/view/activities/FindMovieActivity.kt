@@ -1,16 +1,17 @@
 package uio.androidbootcamp.moviesapp.view.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_find_movie.*
-import uio.androidbootcamp.moviesapp.utils.Constants
 import uio.androidbootcamp.moviesapp.R
 import uio.androidbootcamp.moviesapp.model.models.Movie
+import uio.androidbootcamp.moviesapp.model.services.IMovieRestServices
 import uio.androidbootcamp.moviesapp.model.services.MovieService
 import uio.androidbootcamp.moviesapp.model.services.RetrofitInstance
 import uio.androidbootcamp.moviesapp.presenter.MoviePresenter
+import uio.androidbootcamp.moviesapp.utils.Constants
 
 // Mostly show methods!!!! Really dumb methods!
 // Probably a load for an image
@@ -41,7 +42,7 @@ class FindMovieActivity : AppCompatActivity(), MoviePresenter.MovieView {
     }
 
     override fun getMovieService(): MovieService {
-        val movieRestService: MovieService.MovieRestServices = RetrofitInstance.retrofit.create(MovieService.MovieRestServices::class.java)
+        val movieRestService: IMovieRestServices = RetrofitInstance.retrofit.create(IMovieRestServices::class.java)
         return MovieService(presenter, movieRestService)
     }
 }
