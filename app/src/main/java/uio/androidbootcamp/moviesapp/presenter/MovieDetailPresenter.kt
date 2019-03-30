@@ -9,10 +9,10 @@ class MovieDetailPresenter(val view: MovieDetailView) {
 
     fun getMovie(intent: Intent) {
         val movie = intent.getSerializableExtra(Constants.MOVIE) as Movie
-        view.showMovieTitle(movie.name)
+        view.showMovieTitle(movie.title)
         view.showMovieDate(movie.releaseDate)
         view.showMovieDescription(movie.overview)
-        view.loadImage(movie.posterPath)
+        view.loadImage("https://image.tmdb.org/t/p/w200${movie.posterPath}")
     }
 
     interface MovieDetailView {

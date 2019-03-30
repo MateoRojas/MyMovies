@@ -5,11 +5,13 @@ import uio.androidbootcamp.moviesapp.model.services.MoviePresenterOutput
 import uio.androidbootcamp.moviesapp.model.services.MovieService
 
 //Aquí se maneja la lógica de la aplicación
-class MoviePresenter(val view: View): MoviePresenterOutput {
-    private val movieService = MovieService(this)
+class MoviePresenter(val movieView: MovieView): MoviePresenterOutput {
+
+    private lateinit var movieService: MovieService
 
     fun viewLoaded() {
-        view.setActionsToScreenElements()
+        movieService = movieView.getMovieService()
+        movieView.setActionsToScreenElements()
     }
 
     fun findMovieByName(name: String) {
@@ -17,12 +19,13 @@ class MoviePresenter(val view: View): MoviePresenterOutput {
     }
 
     override fun showMovieInformation(movie: Movie?) {
-        movie?.let { view.showMovieInformation(movie) } ?: view.showMovieNotFound()
+        movie?.let { movieView.showMovieInformation(movie) } ?: movieView.showMovieNotFound()
     }
 
-    interface View {
+    interface MovieView {
         fun showMovieInformation(movie: Movie)
         fun showMovieNotFound()
         fun setActionsToScreenElements()
+        fun getMovieService(): MovieService
     }
 }
